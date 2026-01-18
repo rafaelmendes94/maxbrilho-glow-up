@@ -14,16 +14,6 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/70 to-transparent" />
       </div>
 
-      {/* Labels Antes/Depois */}
-      <div className="absolute top-1/2 left-0 right-0 z-10 hidden md:flex justify-between px-8 transform -translate-y-1/2">
-        <div className="bg-accent text-accent-foreground px-6 py-3 rounded-full font-bold text-xl shadow-lg">
-          ANTES
-        </div>
-        <div className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full font-bold text-xl shadow-lg">
-          DEPOIS
-        </div>
-      </div>
-
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 py-20 min-h-screen flex items-center">
         <div className="max-w-2xl">
