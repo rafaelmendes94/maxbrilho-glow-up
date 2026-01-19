@@ -56,15 +56,15 @@ const BenefitsSection = () => {
           {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-6 border border-primary-foreground/20 hover:bg-primary-foreground/20 transition-all duration-300 group"
+              className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8 border border-primary-foreground/20 hover:bg-primary-foreground/20 transition-all duration-300 group text-center"
               style={{ 
                 animationDelay: `${index * 0.1}s`,
               }}
             >
-              <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <benefit.icon size={28} className="text-secondary-foreground" />
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-secondary to-gold flex items-center justify-center mb-6 mx-auto group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-secondary/30 transition-all duration-300">
+                <benefit.icon size={36} className="text-secondary-foreground" />
               </div>
-              <h3 className="text-xl font-bold text-primary-foreground mb-2">
+              <h3 className="text-xl font-bold text-primary-foreground mb-3">
                 {benefit.title}
               </h3>
               <p className="text-primary-foreground/70">
