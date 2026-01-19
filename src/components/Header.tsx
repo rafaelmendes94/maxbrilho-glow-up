@@ -83,10 +83,10 @@ const Header = () => {
               href="https://www.instagram.com/maxbrilho_produto" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-gradient-to-r from-accent to-red-dark text-accent-foreground px-5 py-2.5 rounded-full transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-accent/30 font-semibold"
+              className="flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 rounded-full transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-accent/30 font-semibold"
             >
               <Instagram size={18} />
-              <span>Comprar Agora</span>
+              <span>Siga-nos</span>
             </a>
           </div>
 
@@ -124,10 +124,10 @@ const Header = () => {
                 href="https://www.instagram.com/maxbrilho_produto" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-red-dark text-accent-foreground px-6 py-3 rounded-full mt-2 font-semibold"
+                className="flex items-center justify-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-full mt-2 font-semibold"
               >
                 <Instagram size={20} />
-                <span>Comprar Agora</span>
+                <span>Siga-nos</span>
               </a>
             </nav>
           </div>
