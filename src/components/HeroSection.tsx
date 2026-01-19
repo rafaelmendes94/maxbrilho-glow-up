@@ -43,8 +43,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <motion.a 
               href="#produtos"
-              className="inline-flex items-center justify-center gap-2 bg-cta-gradient text-accent-foreground px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all sparkle-effect"
-              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center justify-center gap-2 bg-cta-gradient text-accent-foreground px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg shadow-lg hover:shadow-xl transition-all sparkle-effect cta-pulse"
               whileTap={{ scale: 0.98 }}
             >
               <Sparkles size={18} />

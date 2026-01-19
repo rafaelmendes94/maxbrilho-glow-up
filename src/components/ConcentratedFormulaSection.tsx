@@ -108,8 +108,7 @@ const ConcentratedFormulaSection = () => {
             {/* CTA Button */}
             <motion.a
               href="#produtos"
-              className="mt-8 inline-flex items-center gap-2 bg-cta-gradient text-accent-foreground px-6 py-3 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-shadow"
-              whileHover={{ scale: 1.02 }}
+              className="mt-8 inline-flex items-center gap-2 bg-cta-gradient text-accent-foreground px-6 py-3 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-shadow cta-pulse"
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

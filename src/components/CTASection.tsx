@@ -42,8 +42,7 @@ const CTASection = () => {
               href="https://www.instagram.com/maxbrilho_produto"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 md:gap-3 bg-cta-gradient text-accent-foreground px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-lg md:text-xl shadow-xl hover:shadow-2xl transition-all sparkle-effect w-full sm:w-auto"
-              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center justify-center gap-2 md:gap-3 bg-cta-gradient text-accent-foreground px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-lg md:text-xl shadow-xl hover:shadow-2xl transition-all sparkle-effect cta-pulse w-full sm:w-auto"
               whileTap={{ scale: 0.98 }}
               aria-label="Siga Max Brilho no Instagram"
             >
