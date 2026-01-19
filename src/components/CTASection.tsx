@@ -37,7 +37,7 @@ const CTASection = () => {
               className="inline-flex items-center justify-center gap-3 bg-cta-gradient text-accent-foreground px-10 py-5 rounded-full font-bold text-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all sparkle-effect"
             >
               <Instagram size={28} />
-              Comprar pelo Instagram
+              Siga-nos no Instagram
             </a>
           </div>
 
