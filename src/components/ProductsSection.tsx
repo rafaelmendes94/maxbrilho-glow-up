@@ -17,7 +17,7 @@ const products = [
       "Pisos, azulejos e louças",
       "Brilho intenso",
     ],
-    bestseller: true,
+    bestseller: false,
     buyLink: "https://max-brilho.pay.yampi.com.br/r/K46SM0QP0P",
   },
   {
@@ -33,7 +33,7 @@ const products = [
       "Economia garantida",
       "Frete grátis*",
     ],
-    bestseller: false,
+    bestseller: true,
     buyLink: "https://max-brilho.pay.yampi.com.br/r/MH629BPBR2",
   },
 ];
