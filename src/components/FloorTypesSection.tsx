@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 
 const floorTypes = [
   "Porcelanato fosco",
@@ -58,6 +58,25 @@ const FloorTypesSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* CTA Button */}
+        <motion.div
+          className="text-center mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          <motion.a
+            href="#produtos"
+            className="inline-flex items-center gap-2 bg-cta-gradient text-accent-foreground px-6 py-3 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-shadow"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Quero restaurar meu piso
+            <ArrowRight size={18} />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
