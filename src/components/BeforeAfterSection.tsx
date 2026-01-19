@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Sparkles, Check } from "lucide-react";
+import { Sparkles, Check, ArrowRight } from "lucide-react";
 import antesDepoisImg from "@/assets/antes-depois-novo.jpg";
-import arrowCurved from "@/assets/arrow-curved.png";
 
 const BeforeAfterSection = () => {
   return (
@@ -63,26 +62,36 @@ const BeforeAfterSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
           >
-            <img 
-              src={arrowCurved} 
-              alt="Seta"
-              className="w-16 h-auto"
-            />
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-secondary">
+              <path 
+                d="M5 45 Q25 55, 40 35 Q55 15, 75 25" 
+                stroke="currentColor" 
+                strokeWidth="4" 
+                strokeLinecap="round"
+                fill="none"
+              />
+              <path 
+                d="M65 18 L75 25 L68 33" 
+                stroke="currentColor" 
+                strokeWidth="4" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                fill="none"
+              />
+            </svg>
           </motion.div>
 
           {/* Mobile Arrow */}
           <motion.div 
-            className="md:hidden flex items-center justify-center"
+            className="md:hidden flex items-center justify-center py-2"
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
           >
-            <img 
-              src={arrowCurved} 
-              alt="Seta"
-              className="w-12 h-auto rotate-90"
-            />
+            <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
+              <ArrowRight size={28} className="text-secondary rotate-90" />
+            </div>
           </motion.div>
 
           {/* After Card (Polaroid Style) */}
