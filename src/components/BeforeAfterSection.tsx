@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Sparkles, Check } from "lucide-react";
-import antesImg from "@/assets/antes-depois.jpg";
+import antesDepoisImg from "@/assets/antes-depois-novo.jpg";
+import arrowCurved from "@/assets/arrow-curved.png";
 
 const BeforeAfterSection = () => {
   return (
@@ -43,7 +44,7 @@ const BeforeAfterSection = () => {
           >
             <div className="w-64 h-72 sm:w-72 sm:h-80 overflow-hidden rounded-sm">
               <img 
-                src={antesImg} 
+                src={antesDepoisImg} 
                 alt="Piso antes da limpeza"
                 className="w-full h-full object-cover object-left"
                 loading="lazy"
@@ -56,35 +57,32 @@ const BeforeAfterSection = () => {
 
           {/* Arrow between cards */}
           <motion.div 
-            className="hidden md:flex items-center justify-center"
+            className="hidden md:flex items-center justify-center mx-4"
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
           >
-            <svg 
-              width="60" 
-              height="40" 
-              viewBox="0 0 60 40" 
-              fill="none" 
-              className="text-white"
-            >
-              <path 
-                d="M5 20 C 20 35, 40 35, 55 20" 
-                stroke="currentColor" 
-                strokeWidth="3" 
-                fill="none"
-                strokeLinecap="round"
-              />
-              <path 
-                d="M45 15 L55 20 L45 25" 
-                stroke="currentColor" 
-                strokeWidth="3" 
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <img 
+              src={arrowCurved} 
+              alt="Seta"
+              className="w-16 h-auto"
+            />
+          </motion.div>
+
+          {/* Mobile Arrow */}
+          <motion.div 
+            className="md:hidden flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+          >
+            <img 
+              src={arrowCurved} 
+              alt="Seta"
+              className="w-12 h-auto rotate-90"
+            />
           </motion.div>
 
           {/* After Card (Polaroid Style) */}
@@ -120,14 +118,14 @@ const BeforeAfterSection = () => {
 
             <div className="w-64 h-72 sm:w-72 sm:h-80 overflow-hidden rounded-sm">
               <img 
-                src={antesImg} 
+                src={antesDepoisImg} 
                 alt="Piso depois da limpeza"
-                className="w-full h-full object-cover object-right brightness-110 contrast-105 saturate-110"
+                className="w-full h-full object-cover object-right"
                 loading="lazy"
               />
             </div>
             <p className="text-center py-3 font-bold text-xl text-gray-800 italic">
-              depois
+              Depois
             </p>
           </motion.div>
         </div>
