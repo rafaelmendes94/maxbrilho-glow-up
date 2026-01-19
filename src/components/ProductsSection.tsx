@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 const products = [
   {
     id: 1,
-    name: "Max Brilho 5L",
-    description: "Limpa Pisos Super Concentrado",
+    name: "Max Brilho 1L",
+    description: "Fórmula Super Concentrada",
     price: "R$ 69,90",
     originalPrice: "R$ 99,90",
     image: produto1,
@@ -22,8 +22,8 @@ const products = [
   },
   {
     id: 2,
-    name: "Kit Max Brilho 2x5L",
-    description: "Combo Econômico - 2 Galões",
+    name: "Kit Max Brilho 2x1L",
+    description: "Combo Econômico - 2 Unidades",
     price: "R$ 119,90",
     originalPrice: "R$ 169,90",
     image: produto2,
