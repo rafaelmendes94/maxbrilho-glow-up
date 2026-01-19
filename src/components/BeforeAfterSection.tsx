@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { Sparkles, ChevronLeft, ChevronRight, HandHeart } from "lucide-react";
+import { useState, useEffect } from "react";
 import antesDepoisImg1 from "@/assets/antes-depois-novo.jpg";
 import antesDepoisImg2 from "@/assets/antes-depois-ceramica.jpg";
 import antesDepoisImg3 from "@/assets/antes-depois-pedra.jpg";
@@ -25,6 +25,14 @@ const images = [
 
 const BeforeAfterSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Autoplay every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -152,6 +160,10 @@ const BeforeAfterSection = () => {
           <div className="flex items-center gap-2 text-primary-foreground">
             <Sparkles size={20} className="text-secondary" />
             <span>Resultado Profissional</span>
+          </div>
+          <div className="flex items-center gap-2 text-primary-foreground">
+            <HandHeart size={20} className="text-secondary" />
+            <span>100% Artesanal</span>
           </div>
         </motion.div>
       </div>
