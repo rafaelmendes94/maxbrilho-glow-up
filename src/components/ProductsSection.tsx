@@ -17,6 +17,7 @@ const products = [
       "Brilho intenso",
     ],
     bestseller: true,
+    buyLink: "https://max-brilho.pay.yampi.com.br/r/K46SM0QP0P",
   },
   {
     id: 2,
@@ -32,6 +33,7 @@ const products = [
       "Frete grátis*",
     ],
     bestseller: false,
+    buyLink: "https://max-brilho.pay.yampi.com.br/r/MH629BPBR2",
   },
 ];
 
@@ -83,6 +85,10 @@ const ProductsSection = () => {
                   alt={product.name}
                   className="w-full h-64 object-contain transform hover:scale-105 transition-transform duration-300"
                 />
+                {/* Imagem ilustrativa tag */}
+                <span className="absolute bottom-2 right-2 text-xs text-muted-foreground italic">
+                  *Imagem meramente ilustrativa
+                </span>
               </div>
 
               {/* Product Info */}
@@ -116,7 +122,7 @@ const ProductsSection = () => {
 
                 {/* CTA Button */}
                 <a 
-                  href="https://www.instagram.com/maxbrilho_produto"
+                  href={product.buyLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 bg-cta-gradient text-accent-foreground px-6 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all"
