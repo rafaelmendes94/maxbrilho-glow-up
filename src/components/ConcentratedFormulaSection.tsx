@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { DollarSign, Leaf, FlaskConical } from "lucide-react";
+import { DollarSign, Leaf, FlaskConical, ArrowRight } from "lucide-react";
 import produto1 from "@/assets/produto-1.jpeg";
 
 const benefits = [
@@ -104,6 +104,21 @@ const ConcentratedFormulaSection = () => {
                 </motion.div>
               ))}
             </div>
+
+            {/* CTA Button */}
+            <motion.a
+              href="#produtos"
+              className="mt-8 inline-flex items-center gap-2 bg-cta-gradient text-accent-foreground px-6 py-3 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-shadow"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+            >
+              Quero restaurar meu piso
+              <ArrowRight size={18} />
+            </motion.a>
           </motion.div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Sparkles, Droplets, Shield, Leaf, Zap, ThumbsUp } from "lucide-react";
+import { Sparkles, Droplets, Shield, Leaf, Zap, ThumbsUp, ArrowRight } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
 
 const benefits = [
@@ -141,6 +141,25 @@ const BenefitsSection = () => {
             </div>
             <div className="text-primary-foreground/80">Avaliação Média</div>
           </div>
+        </motion.div>
+
+        {/* CTA Button */}
+        <motion.div
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
+          <motion.a
+            href="#produtos"
+            className="inline-flex items-center gap-2 bg-cta-gradient text-accent-foreground px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Quero restaurar meu piso
+            <ArrowRight size={20} />
+          </motion.a>
         </motion.div>
       </div>
     </section>
