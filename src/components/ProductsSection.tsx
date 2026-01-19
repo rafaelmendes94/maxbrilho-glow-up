@@ -187,6 +187,18 @@ const ProductsSection = () => {
           ))}
         </div>
 
+        {/* Trust Badge */}
+        <motion.div 
+          className="mt-16 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
+          <p className="text-muted-foreground text-sm">
+            * Frete grátis para compras acima de R$ 150,00. Consulte condições.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
