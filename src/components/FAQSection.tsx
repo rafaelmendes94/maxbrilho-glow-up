@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 const faqs = [
   {
@@ -39,43 +40,75 @@ const faqs = [
   },
 ];
 
+// JSON-LD Schema for FAQ
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+
 const FAQSection = () => {
   return (
-    <section id="faq" className="py-20 bg-background">
+    <section id="faq" className="py-16 md:py-20 bg-background">
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-secondary font-semibold uppercase tracking-wider text-sm flex items-center justify-center gap-2">
-            <HelpCircle size={18} />
+        <motion.div 
+          className="text-center mb-10 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="text-secondary font-semibold uppercase tracking-wider text-xs md:text-sm flex items-center justify-center gap-2">
+            <HelpCircle size={16} />
             Dúvidas Frequentes
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mt-2 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-foreground mt-2 mb-3 md:mb-4">
             Perguntas <span className="text-primary">Frequentes</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
             Tire suas dúvidas sobre nossos produtos e entregas.
           </p>
-        </div>
+        </motion.div>
 
         {/* FAQ Accordion */}
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
+        <motion.div 
+          className="max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Accordion type="single" collapsible className="space-y-3 md:space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card rounded-xl px-6 border border-border shadow-sm"
+                className="bg-card rounded-xl px-4 md:px-6 border border-border shadow-sm"
               >
-                <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary py-5">
+                <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-foreground hover:text-primary py-4 md:py-5">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5">
+                <AccordionContent className="text-muted-foreground pb-4 md:pb-5 text-sm md:text-base">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
