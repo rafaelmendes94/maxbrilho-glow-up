@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -26,33 +27,55 @@ const testimonials = [
     text: "Uso em toda minha casa - pisos, banheiros, azulejos. Resultado profissional com um preço justo. Melhor produto que já usei!",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
   },
+  {
+    id: 4,
+    name: "Carlos Oliveira",
+    location: "Curitiba, PR",
+    rating: 5,
+    text: "Excelente custo-benefício! Uma pequena quantidade limpa uma área enorme. Minha esposa adorou o resultado.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+  },
+  {
+    id: 5,
+    name: "Fernanda Lima",
+    location: "Salvador, BA",
+    rating: 5,
+    text: "Finalmente achei um produto que realmente funciona! O brilho dura dias e a fragrância é muito agradável.",
+    image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face",
+  },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
 const TestimonialsSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  }, []);
+
+  // Auto-advance carousel
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, [nextSlide, isPaused]);
+
+  // Get visible testimonials (current and adjacent for desktop)
+  const getVisibleIndices = () => {
+    const prev = (currentIndex - 1 + testimonials.length) % testimonials.length;
+    const next = (currentIndex + 1) % testimonials.length;
+    return [prev, currentIndex, next];
+  };
+
+  const visibleIndices = getVisibleIndices();
+
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div 
@@ -74,75 +97,164 @@ const TestimonialsSection = () => {
           </p>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <motion.div 
-          className="grid md:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+        {/* Carousel Container */}
+        <div 
+          className="relative max-w-6xl mx-auto"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
-          {testimonials.map((testimonial) => (
-            <motion.div 
-              key={testimonial.id}
-              variants={cardVariants}
-              className="relative bg-card rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border group"
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
-            >
-              {/* Quote Icon */}
-              <motion.div 
-                className="absolute -top-4 -left-2 w-10 h-10 bg-secondary rounded-full flex items-center justify-center shadow-md"
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-              >
-                <Quote size={20} className="text-secondary-foreground" />
-              </motion.div>
+          {/* Navigation Arrows */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-card rounded-full shadow-lg flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          
+          <button 
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-card rounded-full shadow-lg flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight size={24} />
+          </button>
 
-              {/* Rating */}
-              <div className="flex gap-1 mb-4 mt-2">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + i * 0.1 }}
+          {/* Testimonials Grid */}
+          <div className="flex justify-center items-center gap-6 px-8">
+            {/* Desktop: Show 3 cards */}
+            <div className="hidden md:flex gap-6 items-center">
+              {visibleIndices.map((index, i) => {
+                const testimonial = testimonials[index];
+                const isCenter = i === 1;
+                
+                return (
+                  <motion.div 
+                    key={testimonial.id}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ 
+                      opacity: isCenter ? 1 : 0.6, 
+                      scale: isCenter ? 1 : 0.85,
+                      y: isCenter ? 0 : 20,
+                    }}
+                    transition={{ duration: 0.4 }}
+                    className={`relative bg-card rounded-2xl p-6 shadow-lg border border-border ${
+                      isCenter ? 'w-96 z-10' : 'w-80'
+                    }`}
                   >
-                    <Star 
-                      size={18} 
-                      className="text-secondary fill-secondary" 
-                    />
+                    {/* Quote Icon */}
+                    <div className="absolute -top-4 -left-2 w-10 h-10 bg-secondary rounded-full flex items-center justify-center shadow-md">
+                      <Quote size={20} className="text-secondary-foreground" />
+                    </div>
+
+                    {/* Rating */}
+                    <div className="flex gap-1 mb-4 mt-2">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star 
+                          key={i}
+                          size={18} 
+                          className="text-secondary fill-secondary" 
+                        />
+                      ))}
+                    </div>
+
+                    {/* Text */}
+                    <p className="text-foreground/80 leading-relaxed mb-6">
+                      "{testimonial.text}"
+                    </p>
+
+                    {/* Author */}
+                    <div className="flex items-center gap-4 pt-4 border-t border-border">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-12 h-12 rounded-full object-cover ring-2 ring-secondary/30"
+                        loading="lazy"
+                      />
+                      <div>
+                        <h4 className="font-semibold text-foreground">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {testimonial.location}
+                        </p>
+                      </div>
+                    </div>
                   </motion.div>
-                ))}
-              </div>
+                );
+              })}
+            </div>
 
-              {/* Text */}
-              <p className="text-foreground/80 leading-relaxed mb-6">
-                "{testimonial.text}"
-              </p>
+            {/* Mobile: Show 1 card */}
+            <div className="md:hidden w-full">
+              <AnimatePresence mode="wait">
+                <motion.div 
+                  key={currentIndex}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative bg-card rounded-2xl p-6 shadow-lg border border-border"
+                >
+                  {/* Quote Icon */}
+                  <div className="absolute -top-4 -left-2 w-10 h-10 bg-secondary rounded-full flex items-center justify-center shadow-md">
+                    <Quote size={20} className="text-secondary-foreground" />
+                  </div>
 
-              {/* Author */}
-              <div className="flex items-center gap-4 pt-4 border-t border-border">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover ring-2 ring-secondary/30"
-                  loading="lazy"
-                />
-                <div>
-                  <h4 className="font-semibold text-foreground">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.location}
+                  {/* Rating */}
+                  <div className="flex gap-1 mb-4 mt-2">
+                    {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                      <Star 
+                        key={i}
+                        size={18} 
+                        className="text-secondary fill-secondary" 
+                      />
+                    ))}
+                  </div>
+
+                  {/* Text */}
+                  <p className="text-foreground/80 leading-relaxed mb-6">
+                    "{testimonials[currentIndex].text}"
                   </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-4 pt-4 border-t border-border">
+                    <img 
+                      src={testimonials[currentIndex].image} 
+                      alt={testimonials[currentIndex].name}
+                      className="w-12 h-12 rounded-full object-cover ring-2 ring-secondary/30"
+                      loading="lazy"
+                    />
+                    <div>
+                      <h4 className="font-semibold text-foreground">
+                        {testimonials[currentIndex].name}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonials[currentIndex].location}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'bg-primary w-8' 
+                    : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Trust Badge */}
         <motion.div 
@@ -154,7 +266,7 @@ const TestimonialsSection = () => {
         >
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
-              {testimonials.map((t) => (
+              {testimonials.slice(0, 3).map((t) => (
                 <img 
                   key={t.id}
                   src={t.image} 
