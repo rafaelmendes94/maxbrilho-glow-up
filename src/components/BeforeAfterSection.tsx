@@ -57,26 +57,34 @@ const BeforeAfterSection = () => {
           {/* Arrow between cards */}
           <motion.div 
             className="hidden md:flex items-center justify-center mx-4"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+            transition={{ delay: 0.5 }}
           >
             <svg width="80" height="60" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-secondary">
-              <path 
+              <motion.path 
                 d="M5 45 Q25 55, 40 35 Q55 15, 75 25" 
                 stroke="currentColor" 
                 strokeWidth="4" 
                 strokeLinecap="round"
                 fill="none"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
               />
-              <path 
+              <motion.path 
                 d="M65 18 L75 25 L68 33" 
                 stroke="currentColor" 
                 strokeWidth="4" 
                 strokeLinecap="round" 
                 strokeLinejoin="round"
                 fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 1.3, duration: 0.3, ease: "easeOut" }}
               />
             </svg>
           </motion.div>
