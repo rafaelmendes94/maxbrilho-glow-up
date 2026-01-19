@@ -50,9 +50,7 @@ const HeroSection = () => {
               Ver Produtos
             </motion.a>
             <motion.a 
-              href="https://www.instagram.com/maxbrilho_produto"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#produtos"
               className="inline-flex items-center justify-center gap-2 bg-primary-foreground/20 backdrop-blur-sm text-primary-foreground border-2 border-primary-foreground/50 px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:bg-primary-foreground/30 transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
