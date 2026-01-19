@@ -1,8 +1,39 @@
 import { motion } from "framer-motion";
-import { Sparkles, Check, ArrowRight } from "lucide-react";
-import antesDepoisImg from "@/assets/antes-depois-novo.jpg";
+import { Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import antesDepoisImg1 from "@/assets/antes-depois-novo.jpg";
+import antesDepoisImg2 from "@/assets/antes-depois-ceramica.jpg";
+import antesDepoisImg3 from "@/assets/antes-depois-pedra.jpg";
+
+const images = [
+  {
+    src: antesDepoisImg1,
+    alt: "Antes e depois - Piso porcelanato",
+    title: "Porcelanato",
+  },
+  {
+    src: antesDepoisImg2,
+    alt: "Antes e depois - Piso cerâmica",
+    title: "Cerâmica",
+  },
+  {
+    src: antesDepoisImg3,
+    alt: "Antes e depois - Piso de pedra",
+    title: "Pedra Natural",
+  },
+];
 
 const BeforeAfterSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
     <section id="antes-depois" className="py-20 bg-primary relative overflow-hidden">
       {/* Background decorative elements */}
@@ -31,120 +62,75 @@ const BeforeAfterSection = () => {
           </p>
         </motion.div>
 
-        {/* Polaroid Cards Layout */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4 max-w-4xl mx-auto">
-          {/* Before Card (Polaroid Style) */}
-          <motion.div 
-            className="relative bg-white rounded-lg p-3 shadow-2xl transform md:-rotate-6 hover:rotate-0 transition-transform duration-500"
-            initial={{ opacity: 0, x: -100, rotate: -15 }}
-            whileInView={{ opacity: 1, x: 0, rotate: -6 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, type: "spring" }}
+        {/* Carousel */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Navigation Buttons */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 md:-left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-secondary/90 hover:bg-secondary text-secondary-foreground rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+            aria-label="Imagem anterior"
           >
-            <div className="w-64 h-72 sm:w-72 sm:h-80 overflow-hidden rounded-sm">
-              <img 
-                src={antesDepoisImg} 
-                alt="Piso antes da limpeza"
-                className="w-full h-full object-cover object-left"
-                loading="lazy"
-              />
-            </div>
-            <p className="text-center py-3 font-bold text-xl text-gray-800 italic">
-              Antes
-            </p>
-          </motion.div>
+            <ChevronLeft size={28} />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 md:-right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-secondary/90 hover:bg-secondary text-secondary-foreground rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+            aria-label="Próxima imagem"
+          >
+            <ChevronRight size={28} />
+          </button>
 
-          {/* Arrow between cards */}
-          <motion.div 
-            className="hidden md:flex items-center justify-center mx-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
+          {/* Image Container */}
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            className="relative"
           >
-            <svg width="80" height="60" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-secondary">
-              <motion.path 
-                d="M5 45 Q25 55, 40 35 Q55 15, 75 25" 
-                stroke="currentColor" 
-                strokeWidth="4" 
-                strokeLinecap="round"
-                fill="none"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-              />
-              <motion.path 
-                d="M65 18 L75 25 L68 33" 
-                stroke="currentColor" 
-                strokeWidth="4" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 1.3, duration: 0.3, ease: "easeOut" }}
-              />
-            </svg>
-          </motion.div>
-
-          {/* Mobile Arrow */}
-          <motion.div 
-            className="md:hidden flex items-center justify-center py-2"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-          >
-            <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
-              <ArrowRight size={28} className="text-secondary rotate-90" />
-            </div>
-          </motion.div>
-
-          {/* After Card (Polaroid Style) */}
-          <motion.div 
-            className="relative bg-white rounded-lg p-3 shadow-2xl transform md:rotate-6 hover:rotate-0 transition-transform duration-500"
-            initial={{ opacity: 0, x: 100, rotate: 15 }}
-            whileInView={{ opacity: 1, x: 0, rotate: 6 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2, type: "spring" }}
-          >
-            {/* Checkmark badge */}
-            <motion.div 
-              className="absolute -top-6 -right-6 z-20"
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
-            >
-              <div className="relative">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg border-4 border-dashed border-white/50">
-                  <Check size={32} className="text-white" strokeWidth={3} />
-                </div>
-                {/* Sparkle decorations */}
-                <div className="absolute -top-2 -right-1">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2 L14 8 L12 6 L10 8 Z" fill="#FFD700" />
-                    <path d="M6 12 L12 14 L10 12 L12 10 Z" fill="#FFD700" />
-                    <path d="M18 12 L12 14 L14 12 L12 10 Z" fill="#FFD700" />
-                  </svg>
+            <div className="bg-white rounded-2xl p-3 md:p-4 shadow-2xl mx-8 md:mx-0">
+              <div className="relative overflow-hidden rounded-xl">
+                <img
+                  src={images[currentIndex].src}
+                  alt={images[currentIndex].alt}
+                  className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                  loading="lazy"
+                />
+                {/* Before/After Labels */}
+                <div className="absolute inset-0 flex">
+                  <div className="flex-1 flex items-end justify-center pb-4">
+                    <span className="bg-red-500 text-white px-4 py-1.5 rounded-full font-bold text-sm shadow-lg">
+                      ANTES
+                    </span>
+                  </div>
+                  <div className="flex-1 flex items-end justify-center pb-4">
+                    <span className="bg-green-500 text-white px-4 py-1.5 rounded-full font-bold text-sm shadow-lg">
+                      DEPOIS
+                    </span>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-
-            <div className="w-64 h-72 sm:w-72 sm:h-80 overflow-hidden rounded-sm">
-              <img 
-                src={antesDepoisImg} 
-                alt="Piso depois da limpeza"
-                className="w-full h-full object-cover object-right"
-                loading="lazy"
-              />
+              <p className="text-center py-3 font-bold text-lg text-gray-800">
+                {images[currentIndex].title}
+              </p>
             </div>
-            <p className="text-center py-3 font-bold text-xl text-gray-800 italic">
-              Depois
-            </p>
           </motion.div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-6">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentIndex
+                    ? "bg-secondary w-8"
+                    : "bg-primary-foreground/40 hover:bg-primary-foreground/60"
+                }`}
+                aria-label={`Ir para imagem ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Benefits below image */}
