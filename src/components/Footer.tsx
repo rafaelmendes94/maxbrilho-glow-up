@@ -44,12 +44,18 @@ const Footer = () => {
                 Benefícios
               </a>
               <a 
+                href="#faq" 
+                className="block text-primary-foreground/70 hover:text-secondary transition-colors"
+              >
+                FAQ
+              </a>
+              <a 
                 href="https://www.instagram.com/maxbrilho_produto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-primary-foreground/70 hover:text-secondary transition-colors"
               >
-                Comprar
+                Siga-nos
               </a>
             </nav>
           </div>

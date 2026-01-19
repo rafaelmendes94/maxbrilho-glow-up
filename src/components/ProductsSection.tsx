@@ -79,24 +79,25 @@ const ProductsSection = () => {
               </div>
 
               {/* Product Image */}
-              <div className="relative bg-gradient-to-b from-muted to-card p-8">
+              <div className="relative bg-gradient-to-b from-muted to-card p-4 sm:p-8">
                 <img 
                   src={product.image} 
                   alt={product.name}
-                  className="w-full h-64 object-contain transform hover:scale-105 transition-transform duration-300"
+                  className="w-full h-48 sm:h-64 object-contain transform hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
                 />
                 {/* Imagem ilustrativa tag */}
-                <span className="absolute bottom-2 right-2 text-xs text-muted-foreground italic">
+                <span className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 text-[10px] sm:text-xs text-muted-foreground italic">
                   *Imagem meramente ilustrativa
                 </span>
               </div>
 
               {/* Product Info */}
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-foreground mb-1">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1">
                   {product.name}
                 </h3>
-                <p className="text-muted-foreground mb-4">
+                <p className="text-sm sm:text-base text-muted-foreground mb-4">
                   {product.description}
                 </p>
 
@@ -112,11 +113,11 @@ const ProductsSection = () => {
 
 
                 {/* Pricing */}
-                <div className="flex items-baseline gap-3 mb-6">
-                  <span className="text-3xl font-extrabold text-primary">
+                <div className="flex items-baseline gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <span className="text-2xl sm:text-3xl font-extrabold text-primary">
                     {product.price}
                   </span>
-                  <span className="text-lg text-muted-foreground line-through">
+                  <span className="text-base sm:text-lg text-muted-foreground line-through">
                     {product.originalPrice}
                   </span>
                 </div>
@@ -126,9 +127,9 @@ const ProductsSection = () => {
                   href={product.buyLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-cta-gradient text-accent-foreground px-6 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-cta-gradient text-accent-foreground px-4 sm:px-6 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all"
                 >
-                  <ShoppingCart size={20} />
+                  <ShoppingCart size={18} className="sm:w-5 sm:h-5" />
                   Comprar Agora
                 </a>
               </div>
