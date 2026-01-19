@@ -1,6 +1,6 @@
 import produto1 from "@/assets/produto-1.jpeg";
 import produto2 from "@/assets/produto-2.jpeg";
-import { ShoppingCart, Star, Check } from "lucide-react";
+import { ShoppingCart, Star, Check, Package } from "lucide-react";
 
 const products = [
   {
@@ -18,6 +18,7 @@ const products = [
     ],
     bestseller: true,
     buyLink: "https://max-brilho.pay.yampi.com.br/r/K46SM0QP0P",
+    stock: 12,
   },
   {
     id: 2,
@@ -34,6 +35,7 @@ const products = [
     ],
     bestseller: false,
     buyLink: "https://max-brilho.pay.yampi.com.br/r/MH629BPBR2",
+    stock: 8,
   },
 ];
 
@@ -109,6 +111,14 @@ const ProductsSection = () => {
                     </li>
                   ))}
                 </ul>
+
+                {/* Stock Counter */}
+                <div className="flex items-center gap-2 mb-4 p-3 bg-accent/10 rounded-lg border border-accent/20">
+                  <Package size={18} className="text-accent" />
+                  <span className="text-sm font-semibold text-accent">
+                    Apenas {product.stock} unidades em estoque!
+                  </span>
+                </div>
 
                 {/* Pricing */}
                 <div className="flex items-baseline gap-3 mb-6">
