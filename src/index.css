@@ -207,4 +207,40 @@
       box-shadow: 0 0 40px rgba(0, 100, 200, 0.5);
     }
   }
+
+  .cta-pulse {
+    position: relative;
+    animation: cta-scale 2s ease-in-out infinite;
+  }
+
+  .cta-pulse::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    background: inherit;
+    opacity: 0;
+    animation: cta-ring 2s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  @keyframes cta-scale {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes cta-ring {
+    0% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.15);
+    }
+  }
 }

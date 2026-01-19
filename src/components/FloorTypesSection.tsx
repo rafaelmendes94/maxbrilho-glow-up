@@ -69,8 +69,7 @@ const FloorTypesSection = () => {
         >
           <motion.a
             href="#produtos"
-            className="inline-flex items-center gap-2 bg-cta-gradient text-accent-foreground px-6 py-3 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-shadow"
-            whileHover={{ scale: 1.02 }}
+            className="inline-flex items-center gap-2 bg-cta-gradient text-accent-foreground px-6 py-3 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-shadow cta-pulse"
             whileTap={{ scale: 0.98 }}
           >
             Quero restaurar meu piso
