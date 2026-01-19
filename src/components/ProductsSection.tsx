@@ -7,8 +7,8 @@ const products = [
     id: 1,
     name: "Max Brilho 5L",
     description: "Limpa Pisos Super Concentrado",
-    price: "R$ 49,90",
-    originalPrice: "R$ 69,90",
+    price: "R$ 69,90",
+    originalPrice: "R$ 99,90",
     image: produto1,
     features: [
       "Rende até 30m²",
@@ -24,8 +24,8 @@ const products = [
     id: 2,
     name: "Kit Max Brilho 2x5L",
     description: "Combo Econômico - 2 Galões",
-    price: "R$ 89,90",
-    originalPrice: "R$ 139,80",
+    price: "R$ 119,90",
+    originalPrice: "R$ 169,90",
     image: produto2,
     features: [
       "Rende até 60m²",
