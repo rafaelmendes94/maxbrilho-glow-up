@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { DollarSign, Leaf, FlaskConical, ArrowRight } from "lucide-react";
+import { DollarSign, Leaf, FlaskConical, ArrowRight, HandHeart } from "lucide-react";
 import produto1 from "@/assets/produto-1.jpeg";
 
 const benefits = [
@@ -44,7 +44,7 @@ const ConcentratedFormulaSection = () => {
                 *Imagem meramente ilustrativa
               </span>
             </div>
-            {/* Badge */}
+            {/* Badge - Super Concentrado */}
             <motion.div
               className="absolute -top-4 -right-4 bg-accent text-accent-foreground px-4 py-2 rounded-full text-sm font-bold shadow-lg"
               initial={{ scale: 0, rotate: -10 }}
@@ -53,6 +53,17 @@ const ConcentratedFormulaSection = () => {
               transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
             >
               Super Concentrado
+            </motion.div>
+            {/* Badge - 100% Artesanal */}
+            <motion.div
+              className="absolute -bottom-3 -left-3 bg-secondary text-secondary-foreground px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2"
+              initial={{ scale: 0, rotate: 10 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+            >
+              <HandHeart size={16} />
+              100% Artesanal
             </motion.div>
           </motion.div>
 
