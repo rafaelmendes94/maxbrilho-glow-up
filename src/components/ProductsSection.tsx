@@ -8,8 +8,8 @@ const products = [
     id: 1,
     name: "Max Brilho 1L",
     description: "Fórmula Super Concentrada",
-    price: "R$ 69,90",
-    originalPrice: "R$ 99,90",
+    price: "R$ 99,90",
+    originalPrice: "R$ 139,90",
     image: produto1,
     features: [
       "Rende até 30m²",
@@ -18,7 +18,7 @@ const products = [
       "Brilho intenso",
     ],
     bestseller: false,
-    buyLink: "https://max-brilho.pay.yampi.com.br/r/K46SM0QP0P",
+    buyLink: "https://max-brilho.pay.yampi.com.br/r/1RNRGR9WI4",
   },
   {
     id: 2,
