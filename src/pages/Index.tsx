@@ -4,6 +4,7 @@ import ProductsSection from "@/components/ProductsSection";
 import FloorTypesSection from "@/components/FloorTypesSection";
 import ConcentratedFormulaSection from "@/components/ConcentratedFormulaSection";
 import BeforeAfterSection from "@/components/BeforeAfterSection";
+import VideoSection from "@/components/VideoSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
@@ -19,6 +20,7 @@ const Index = () => {
       <ConcentratedFormulaSection />
       <FloorTypesSection />
       <BeforeAfterSection />
+      <VideoSection />
       <BenefitsSection />
       <TestimonialsSection />
       <ProductsSection />
